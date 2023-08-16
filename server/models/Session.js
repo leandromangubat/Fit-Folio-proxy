@@ -42,7 +42,7 @@ const sessionSchema = new Schema({
       // The rest of these objects are details about the workout
       workoutType: {
         type: String,
-        required: true,
+        required: false,
       },
       distance: {
         type: Number,
