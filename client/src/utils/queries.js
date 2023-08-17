@@ -36,6 +36,7 @@ export const QUERY_SINGLE_SESSION = gql`
       workouts {
         _id
         workoutText
+        workoutType
         workoutAuthor
         createdAt
       }

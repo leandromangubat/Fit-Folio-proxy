@@ -27,7 +27,7 @@ const SingleSession = () => {
     <div className="my-3">
       <h3 className="card-header bg-dark text-light p-2 m-0">
         {session.sessionAuthor} <br />
-        <span style={{ fontSize: "1rem" }}>
+        <span style={{ fontSize: "2rem" }}>
           created session at {session.createdAt}
         </span>
       </h3>
@@ -36,19 +36,17 @@ const SingleSession = () => {
           className="p-4"
           style={{
             fontSize: "1.5rem",
-            fontStyle: "italic",
-            border: "2px dotted #1a1a1a",
             lineHeight: "1.5",
           }}
         >
-          {session.sessionText}
+          <span className=" p-2 bg-primary">{session.sessionText}</span>
         </blockquote>
       </div>
 
       <div className="my-5">
         <WorkoutList workouts={session.workouts} />
       </div>
-      <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
+      <div className="m-3 p-4">
         <WorkoutForm sessionId={session._id} />
       </div>
     </div>

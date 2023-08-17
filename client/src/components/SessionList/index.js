@@ -17,7 +17,7 @@ const SessionList = ({
       {sessions &&
         sessions.map((session) => (
           <div key={session._id} className="card mb-3">
-            <h4 className="card-header bg-primary text-light p-2 m-0">
+            <h4 className="card-header orange text-light p-2 m-0 ">
               {showUsername ? (
                 <Link
                   className="text-light"
@@ -31,12 +31,12 @@ const SessionList = ({
               ) : (
                 <>
                   <span style={{ fontSize: "1rem" }}>
-                    You created this session on {session.createdAt}
+                    Session created on {session.createdAt}
                   </span>
                 </>
               )}
             </h4>
-            <div className="card-body bg-light p-2">
+            <div className="card-body orange p-2">
               <p>{session.sessionText}</p>
             </div>
             <Link

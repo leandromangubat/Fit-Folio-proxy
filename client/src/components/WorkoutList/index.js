@@ -25,6 +25,7 @@ const WorkoutList = ({ workouts = [] }) => {
                   </span>
                 </h5>
                 <p className="card-body">{workout.workoutText}</p>
+                <p className="card-body">{workout.workoutType}</p>
               </div>
             </div>
           ))}

@@ -8,7 +8,7 @@ import Auth from "../../utils/auth";
 
 const WorkoutForm = ({ sessionId }) => {
   const [workoutText, setWorkoutText] = useState("");
-  const [characterCount, setCharacterCount] = useState(0);
+  const [workoutType, setWorkoutType] = useState("");
 
   const [addWorkout, { error }] = useMutation(ADD_WORKOUT);
 
@@ -20,23 +20,28 @@ const WorkoutForm = ({ sessionId }) => {
         variables: {
           sessionId,
           workoutText,
+          workoutType,
           workoutAuthor: Auth.getProfile().data.username,
         },
       });
 
       setWorkoutText("");
+      setWorkoutType("");
     } catch (err) {
       console.error(err);
     }
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChangeText = (event) => {
+    const { value } = event.target;
 
-    if (name === "workoutText" && value.length <= 280) {
-      setWorkoutText(value);
-      setCharacterCount(value.length);
-    }
+    setWorkoutText(value);
+  };
+
+  const handleChangeType = (event) => {
+    const { value } = event.target;
+
+    setWorkoutType(value);
   };
 
   return (
@@ -45,14 +50,7 @@ const WorkoutForm = ({ sessionId }) => {
 
       {Auth.loggedIn() ? (
         <>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? "text-danger" : ""
-            }`}
-          >
-            Character Count: {characterCount}/280
-            {error && <span className="ml-2">{error.message}</span>}
-          </p>
+          <p>{error && <span className="ml-2">{error.message}</span>}</p>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
@@ -64,7 +62,17 @@ const WorkoutForm = ({ sessionId }) => {
                 value={workoutText}
                 className="form-input w-100"
                 style={{ lineHeight: "1.5", resize: "vertical" }}
-                onChange={handleChange}
+                onChange={handleChangeText}
+              ></textarea>
+            </div>
+            <div className="col-12 col-lg-9">
+              <textarea
+                name="workoutText"
+                placeholder="Add your workout description"
+                value={workoutType}
+                className="form-input w-100"
+                style={{ lineHeight: "1.5", resize: "vertical" }}
+                onChange={handleChangeType}
               ></textarea>
             </div>
 

@@ -21,6 +21,7 @@ const typeDefs = gql`
     _id: ID
     workoutText: String
     workoutAuthor: String
+    workoutType: String
     createdAt: String
   }
 
@@ -41,7 +42,11 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addSession(sessionText: String!): Session
-    addWorkout(sessionId: ID!, workoutText: String!): Session
+    addWorkout(
+      sessionId: ID!
+      workoutText: String!
+      workoutType: String!
+    ): Session
     removeSession(sessionId: ID!): Session
     removeWorkout(sessionId: ID!, workoutId: ID!): Session
   }

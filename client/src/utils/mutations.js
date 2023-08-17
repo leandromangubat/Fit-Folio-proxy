@@ -40,8 +40,16 @@ export const ADD_SESSION = gql`
 `;
 
 export const ADD_WORKOUT = gql`
-  mutation addWorkout($sessionId: ID!, $workoutText: String!) {
-    addWorkout(sessionId: $sessionId, workoutText: $workoutText) {
+  mutation addWorkout(
+    $sessionId: ID!
+    $workoutText: String!
+    $workoutType: String!
+  ) {
+    addWorkout(
+      sessionId: $sessionId
+      workoutText: $workoutText
+      workoutType: $workoutType
+    ) {
       _id
       sessionText
       sessionAuthor
@@ -49,6 +57,7 @@ export const ADD_WORKOUT = gql`
       workouts {
         _id
         workoutText
+        workoutType
         createdAt
       }
     }

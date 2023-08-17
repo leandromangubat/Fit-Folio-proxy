@@ -44,8 +44,8 @@ const sessionSchema = new Schema({
         type: String,
         required: true,
       },
-      distance: {
-        type: Number,
+      workoutDistance: {
+        type: String,
         required: false,
       },
       duration: {
@@ -53,11 +53,11 @@ const sessionSchema = new Schema({
         required: false,
       },
       sets: {
-        type: Number,
+        type: String,
         required: false,
       },
       reps: {
-        type: Number,
+        type: String,
         required: false,
       },
       restTime: {

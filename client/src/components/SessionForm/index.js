@@ -10,8 +10,6 @@ import Auth from "../../utils/auth";
 const SessionForm = () => {
   const [sessionText, setSessionText] = useState("");
 
-  const [characterCount, setCharacterCount] = useState(0);
-
   const [addSession, { error }] = useMutation(ADD_SESSION, {
     update(cache, { data: { addSession } }) {
       try {
@@ -56,7 +54,6 @@ const SessionForm = () => {
 
     if (name === "sessionText" && value.length <= 280) {
       setSessionText(value);
-      setCharacterCount(value.length);
     }
   };
 
@@ -66,13 +63,7 @@ const SessionForm = () => {
 
       {Auth.loggedIn() ? (
         <>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? "text-danger" : ""
-            }`}
-          >
-            Character Count: {characterCount}/280
-          </p>
+          <p className={`m-0 ${error ? "text-danger" : ""}`}></p>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}

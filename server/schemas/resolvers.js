@@ -64,13 +64,22 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    addWorkout: async (parent, { sessionId, workoutText }, context) => {
+    addWorkout: async (
+      parent,
+      { sessionId, workoutText, workoutType, workoutDistance },
+      context
+    ) => {
       if (context.user) {
         return Session.findOneAndUpdate(
           { _id: sessionId },
           {
             $addToSet: {
-              workouts: { workoutText, workoutAuthor: context.user.username },
+              workouts: {
+                workoutType,
+                workoutText,
+                workoutDistance,
+                workoutAuthor: context.user.username,
+              },
             },
           },
           {
